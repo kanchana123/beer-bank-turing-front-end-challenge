@@ -1,0 +1,37 @@
+.product-details {
+  background-color: #fefefe;
+  text-align: left;
+  margin-left: 10%;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.product-card {
+  z-index: 1000;
+}
+
+.details {
+  width: 100%;
+}
+
+.suggestion {
+  border: 1px solid #888;
+  text-align: center;
+  height: 200px;
+  padding-top: 20px;
+  margin: 10px;
+}
