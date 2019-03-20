@@ -1,7 +1,5 @@
 import React, { Component }  from 'react';
 import PropTypes             from 'prop-types';
-import { Route }             from "react-router-dom";
-
 import { withStyles }        from '@material-ui/core/styles';
 import { Card, CardContent,
                       Grid } from '@material-ui/core';
@@ -24,7 +22,7 @@ class ProductDetails extends Component {
         <Grid item xs={12} sm={6} md={4} lg={3}>
           <div className="suggestion">
             <div style={{height: "50%"}}>
-              <img src={suggestion.image} style={{height: "100%", top: "50%"}}/>
+              <img alt="" src={suggestion.image} style={{height: "100%", top: "50%"}}/>
             </div>
             <div>
               <h3>{suggestion.name}</h3>
@@ -35,7 +33,7 @@ class ProductDetails extends Component {
     })
   }
   render() {
-    const {classes} = this.props;
+    // const {classes} = this.props;
     return (
       <div className="product-details">
         <div className="product-card">
@@ -45,7 +43,7 @@ class ProductDetails extends Component {
               <Grid container spacing={24}>
                 <Grid item xs={12} sm={3}>
                   <div className="product-img">
-                    <img src={this.props.product.image_url} className={this.props.classes.img}/>
+                    <img alt="" src={this.props.product.image_url} className={this.props.classes.img}/>
                   </div>
                 </Grid>
                 <Grid item xs={12} sm={9}>

@@ -1,10 +1,8 @@
 import React, { Component }                  from 'react';
 import PropTypes                             from 'prop-types';
 import { withStyles }                        from '@material-ui/core/styles';
-import {InputBase, AppBar, Button, Card,
+import {InputBase, Button, Card,
         CardContent, TextField, Typography } from '@material-ui/core';
-
-import { Link }                              from "react-router-dom";
 
 import { connect }                           from "react-redux"
 import { getSearchedData, updateSearch }     from '../../store/actions/products'
@@ -46,7 +44,6 @@ const styles = theme => ({
     position: 'fixed',
     zIndex: 1,
     overflow: 'auto',
-    backgroundColor: 'rgb(0,0,0)',
     backgroundColor: 'rgba(0,0,0,0.3)',
     top: 0,
     left: 0,
@@ -225,7 +222,6 @@ class PrivateHeader extends Component {
 }
 
 PrivateHeader.propTypes = {
-  history: PropTypes.object.isRequired,
   classes: PropTypes.object.isRequired,
   getSearchedData: PropTypes.func.isRequired,
   updateSearch: PropTypes.func.isRequired,

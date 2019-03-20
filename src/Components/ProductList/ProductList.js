@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 import { connect }          from "react-redux"
-import { Route }             from "react-router-dom";
 import PropTypes            from 'prop-types';
 import _                    from 'lodash'
 
 import { withStyles }       from '@material-ui/core/styles';
 import  { Card, CardContent,
-          Grid, Icon }      from '@material-ui/core';
+                Grid }      from '@material-ui/core';
 import { StarBorder,
           StarOutlined }    from '@material-ui/icons';
 
@@ -69,7 +68,7 @@ class ProductList extends Component {
 
   showStar (isFavourite, id) {
     // if is favourite or is in favourites state show filled
-    if (isFavourite || _.indexOf(this.props.favourites, id) != -1) {
+    if (isFavourite || _.indexOf(this.props.favourites, id) !== -1) {
       return <StarOutlined style={{color: "orange"}} className={this.props.classes.icon} onClick={() => {
             // remove id from favourites list
             this.props.updateFavourites(_.pull(this.props.favourites, id))
@@ -87,7 +86,7 @@ class ProductList extends Component {
   Product (name, tagline, image, isFavourite, id) {
     return <Card className={this.props.classes.card} onClick={(e) => {
                 // if user didn't click on the star then show product details popup
-                if (e.target.parentElement.className != "star" && e.target.parentElement.tagName != "svg") {
+                if (e.target.parentElement.className !== "star" && e.target.parentElement.tagName !== "svg") {
                     this.props.getProductDetails(id)
                     this.getSuggestions()
                     document.getElementById("productDetails").style.display = "block"
@@ -96,7 +95,7 @@ class ProductList extends Component {
               <CardContent>
                 <div className="star" style={{float: "right"}}>{this.showStar(isFavourite, id)}</div>
                 <div className="product-list-img">
-                  <img src={image}
+                  <img alt="" src={image}
                       className={this.props.classes.img} style={{marginLeft: "auto", marginRight: "auto", display: "block"}}/>
                 </div>
                 <h3 style={{color: "orange", margin: "10px"}}>{name}</h3>
@@ -107,12 +106,14 @@ class ProductList extends Component {
 
   list(data, isFav) {
     // if favourites, then only show beers from favourites list
-    if (window.location.pathname == "/favourites") {
+    if (window.location.pathname === "/favourites") {
       var beer = {}
       var favData = []
       setTimeout(_.map(this.props.favourites, id => {
         beer = _.find(data, {'id': id})
-        favData.push(beer)
+        if (beer) {
+          favData.push(beer)
+        }
       }), 100)
 
       // if there is at least 1 favourite beer
@@ -166,7 +167,7 @@ class ProductList extends Component {
   }
 
   render() {
-    const { classes } = this.props;
+    // const { classes } = this.props;
     return (
       <div className="product-list">
         <div className="products">
@@ -188,14 +189,14 @@ class ProductList extends Component {
 
 ProductList.propTypes = {
   classes: PropTypes.object.isRequired,
-  data: PropTypes.object.isRequired,
+  data: PropTypes.array.isRequired,
   productDetails: PropTypes.object.isRequired,
   favourites : PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => {
   return {
-    data : state.data || {},
+    data : state.data || [],
     productDetails : state.details || {},
     favourites : state.favourites || []
   }
